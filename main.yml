@@ -1,0 +1,16 @@
+---
+# This playbook installs an LDAP server to work with tower
+
+- hosts: all
+  sudo: True
+  remote_user: ubuntu
+  gather_facts: True
+
+#
+# Install LDAP
+#
+  roles:
+    - role: roles/bennojoy.openldap_server
+      openldap_server_ldif: 'templates/tower-ldap.ldif.j2'
+      openldap_server_rootpw: 'fo0m4nchU'
+      openldap_server_enable_ssl: false
